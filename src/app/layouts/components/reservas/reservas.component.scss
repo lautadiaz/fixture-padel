@@ -1,0 +1,69 @@
+button {
+  cursor: pointer;
+}
+h3 {
+  font-size: large;
+  font-weight: 500;
+}
+.filtros {
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 5px;
+
+    select {
+      width: 90px;
+      padding: 2px;
+      cursor: pointer;
+    }
+}
+
+.principal-reservas {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  text-align: center;
+
+  .calendario {
+    grid-column: 1 / 2;
+    background-color: #ffffff;
+    .demo-inline-calendar-card {
+      width: 100%;
+    }
+  }
+
+  .turnos {
+    p {
+      font-size: medium;
+    }
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      li {
+        margin-bottom: 10px;
+        .btnTurnos {
+          width: 60%;
+          padding: 5px;
+          border-radius: 5px;
+          background-color: #63f4f6;
+          &:hover {
+            filter: brightness(80%);
+          }
+        }
+        .noDisp {
+          background-color: #fe7171;
+        }
+      }
+    }
+  }
+
+  .resumen {
+    .btnContinuar {
+      width: 50%;
+      padding: 8px;
+      border-radius: 5px;
+    }
+  }
+}

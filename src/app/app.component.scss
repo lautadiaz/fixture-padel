@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+
+  .side-bar {
+    background-color: aquamarine;
+    height: 100dvh;
+    grid-column: 1 / 2;
+  }
+
+  .principal {
+    background-color: bisque;
+    grid-column: 2 / 9;
+  }
+}

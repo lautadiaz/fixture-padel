@@ -1,0 +1,49 @@
+<section class="filtros">
+    <span>Seleccione el deporte deseado: </span>
+    <select name="deporte">
+      <option [value]="deporte" *ngFor="let deporte of deportes"> {{ deporte | titlecase }}</option>
+    </select>
+</section>
+
+<main class="principal-reservas">
+
+  <div class="calendario">
+    <h3>Calendario</h3>
+    <mat-card class="demo-inline-calendar-card">
+      <mat-calendar [(selected)]="fechaSeleccionada"
+                    (selectedChange)="diaSeleccionado(fechaSeleccionada)"></mat-calendar>
+    </mat-card>
+  </div>
+
+  <div class="turnos">
+    <h3>Turnos</h3>
+    <div *ngIf="fechaSeleccionada">
+      <p>Dia: {{ fechaSeleccionada | date: 'd/M/yy' }}</p>
+      <ul>
+        <li *ngFor="let turno of turnos">
+          <button class="btnTurnos" (click)="turnoElegido(turno)" [ngClass]="{'noDisp': !turno.disponible}">
+            <span>Horario: {{ turno.horario }}hs</span>
+            <br>
+            <span *ngIf="turno.disponible">Disponible</span>
+            <span *ngIf="!turno.disponible">No disponible</span>
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="resumen">
+    <h3>Resumen</h3>
+    <div *ngIf="turnoSeleccionado !== null">
+      <div class="noDisponible" *ngIf="!turnoSeleccionado.disponible">
+        <p>El turno seleccionado no se encuentra disponible.</p>
+        <p>Por favor elija otro turno.</p>
+      </div>
+      <div class="disponible" *ngIf="turnoSeleccionado.disponible">
+        <p>Usted esta por reservar el turno del: {{ fechaSeleccionada | date: 'd/M/yy' }}</p>
+        <p>A las: {{ turnoSeleccionado.horario }}hs</p>
+        <button class="btnContinuar">Continuar</button>
+      </div>
+    </div>
+  </div>
+</main>
