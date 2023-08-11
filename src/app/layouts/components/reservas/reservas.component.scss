@@ -6,7 +6,7 @@ h3 {
   font-size: large;
   font-weight: 500;
 }
-.filtros {
+.filters {
   padding: 10px;
   background-color: #ffffff;
   border: 1px solid #000000;
@@ -19,20 +19,20 @@ h3 {
     }
 }
 
-.principal-reservas {
+.principal-reservs {
   margin-top: 10px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 5px;
   text-align: center;
 
-  .calendario {
+  .calendar {
     .calendar-card {
       width: 100%;
     }
   }
 
-  .turnos {
+  .turns {
     p {
       font-size: medium;
     }
@@ -48,7 +48,7 @@ h3 {
       }
     }
   }
-  .centrar-spinner {
+  .center-spinner {
     height: 100%;
     display: flex;
     align-items: center;

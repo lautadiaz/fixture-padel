@@ -38,9 +38,9 @@ export class AppComponent implements OnInit {
       } else {
         this.opened = true
       }
-    })
+    });
 
-  }
+  };
 
 
 }

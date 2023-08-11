@@ -9,5 +9,5 @@ export const routes: Routes = [
   { path: 'reservas'     , component: ReservasComponent },
   { path: 'competiciones', component: CompeticionesComponent },
   { path: 'confirmation' , component: ConfirmationComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: '**'           , redirectTo: 'home' }
 ];

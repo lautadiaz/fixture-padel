@@ -24,12 +24,12 @@
 
     <div class="card">
 
-      <mat-card class="" *ngIf="paymentMethod() === 'efectivo'">
+      <mat-card class="" *ngIf="paymentMethod() === 'cash'">
         <mat-card-header>
           <mat-card-title>Efectivo</mat-card-title>
         </mat-card-header>
         <mat-card-content>
-          <p>Debe presentarse antes del {{ turn.fecha | date: 'd/M/yy' }} a las {{ (turn.fecha.getHours() - 1) }}:45hs para realizar el pago de la reserva.</p>
+          <p>Debe presentarse antes del {{ turn.date | date: 'd/M/yy' }} a las {{ (turn.date.getHours() - 1) }}:45hs para realizar el pago de la reserva.</p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)="confirmedReservation()">CONFIRMAR</button>
@@ -37,7 +37,7 @@
       </mat-card>
 
       <!-- *ngIf="paymentMethod() === 'transferencia'" -->
-      <mat-card class="" *ngIf="paymentMethod() === 'transferencia'">
+      <mat-card class="" *ngIf="paymentMethod() === 'transfer'">
         <mat-card-header>
           <mat-card-title>Transferencia bancaria</mat-card-title>
         </mat-card-header>

@@ -10,8 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Importaciones personalizadas
-import { Turno } from 'src/app/interfaces/reservas.interface';
-import { ReservaService } from 'src/app/services/reserva.service';
+import { Turn } from 'src/app/interfaces/reservs.interface';
+import { ReservService } from 'src/app/services/reserv.service';
 
 @Component({
   selector: 'app-reservas',
@@ -22,45 +22,45 @@ import { ReservaService } from 'src/app/services/reserva.service';
 })
 export class ReservasComponent {
 
-  reservaService = inject(ReservaService);
+  reservService = inject(ReservService);
 
   // Para los filtros
   sports: string[] = ["padel", "futbol5", "tenis"]
 
   // Calendario
-  selectedDay!: Date;
+  Date!: Date;
 
   // Turnos falsos
-  turnos: Turno[] = [{ disponible: false, horario: 16, fecha: new Date }, { disponible: true, horario: 17, fecha: new Date },{ disponible: true, horario: 18, fecha: new Date },{ disponible: false, horario: 19, fecha: new Date }, { disponible: true, horario: 20, fecha: new Date }]
-  turnoSeleccionado: Turno | null = null;
+  turns: Turn[] = [{ available: false, time: 16, date: new Date }, { available: true, time: 17, date: new Date }, { available: true, time: 18, date: new Date }, { available: false, time: 19, date: new Date }, { available: true, time: 20, date: new Date }];
+  selecctedTurn: Turn | null = null;
 
   // Mostrar spinner
   loading1 = signal(false);
   loading2 = signal(false);
 
-  diaSeleccionado(value: Date | null ) {
-    // Aqui va la llamada a la base de datos para ver los turnos disponibles
-    console.log( value );
-    this.turnoSeleccionado = null;
+  selectedDate(value: Date | null ) {
+    // Aqui va la llamada a la base de datos para ver los turnos disponibles luego de seeccionar una fecha
+    this.selecctedTurn = null;
+    // Se muestra el spinner
     this.loading1.set(true);
     setTimeout(() => {
       this.loading1.set(false);
     }, 1000)
   }
 
-  turnoElegido(turno: Turno) {
-    // Aqui va la llamada a la base de datos para reservar el turno
-    const { disponible, horario } = turno;
-    this.selectedDay.setHours(turno.horario);
-    this.turnoSeleccionado = {fecha: this.selectedDay, disponible, horario };
-    console.log(this.turnoSeleccionado);
+  chosenTurn(turno: Turn) {
+    // Aqui va la llamada a la base de datos para reservar luego de elegir el turno
+    const { available, time } = turno;
+    this.Date.setHours(turno.time);
+    this.selecctedTurn = {date: this.Date, available, time };
+    // Se muestra el spinner
     this.loading2.set(true);
     setTimeout(() => {
       this.loading2.set(false);
     }, 1000)
   }
   reserveTurn() {
-    if( this.turnoSeleccionado )
-    this.reservaService.establecerFecha(this.turnoSeleccionado)
+    if( this.selecctedTurn )
+    this.reservService.setSelectedDate(this.selecctedTurn)
   }
 }
