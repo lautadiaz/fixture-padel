@@ -1,0 +1,76 @@
+h1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: x-large;
+  margin-top: 10px;
+}
+.principal-confirmation {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 5px;
+  text-align: center;
+
+  .payment-method {
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      li {
+        width: 60%;
+        margin-bottom: 20px;
+        .card {
+          mat-card-header, mat-card-actions {
+            justify-content: center;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .instructions {
+
+    .card {
+      display: flex;
+      justify-content: center;
+      mat-card {
+        width: 90%;
+        align-items: center;
+        mat-card-header, p {
+          margin-bottom: 15px;
+        }
+      }
+      .mercadopago {
+        img {
+          width: 50%;
+          max-width: 100%;
+        }
+      }
+    }
+  }
+}
+.completed-confirmation {
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  mat-card {
+    width: 90%;
+    align-items: center;
+    padding: 30px;
+    mat-card-title {
+      font-size: xx-large;
+      margin-bottom: 10px;
+    }
+    mat-card-content {
+      margin: 15px;
+    }
+    mat-card-footer {
+      font-size: xx-large;
+      font-weight: 500;
+    }
+  }
+}

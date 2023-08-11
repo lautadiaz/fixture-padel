@@ -1,15 +1,27 @@
-.container {
-  display: grid;
-  grid-template-columns: repeat(8, 1fr);
+.container-drawer {
+  height: 100%;
+  height: 100vh;
+  height: 100dvh;
 
-  .side-bar {
-    background-color: aquamarine;
-    height: 100dvh;
-    grid-column: 1 / 2;
+  .sidenav {
+    width: 40%;
+  }
+  .btn-drawer {
+    display: block;
   }
 
-  .principal {
-    background-color: bisque;
-    grid-column: 2 / 9;
+  @media (min-width: 425px) {
+    .sidenav {
+      max-width: 270px;
+      padding: 20px;
+      display: block;
+    }
+    .btn-drawer {
+      display: none;
+    }
+    .principal-content {
+      padding-left: 10px;
+    }
   }
+
 }

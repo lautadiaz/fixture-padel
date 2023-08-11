@@ -1,7 +1,7 @@
 <section class="filtros">
     <span>Seleccione el deporte deseado: </span>
     <select name="deporte">
-      <option [value]="deporte" *ngFor="let deporte of deportes"> {{ deporte | titlecase }}</option>
+      <option [value]="sport" *ngFor="let sport of sports"> {{ sport | titlecase }}</option>
     </select>
 </section>
 
@@ -9,41 +9,51 @@
 
   <div class="calendario">
     <h3>Calendario</h3>
-    <mat-card class="demo-inline-calendar-card">
-      <mat-calendar [(selected)]="fechaSeleccionada"
-                    (selectedChange)="diaSeleccionado(fechaSeleccionada)"></mat-calendar>
+    <mat-card class="calendar-card">
+      <mat-calendar [(selected)]="selectedDay"
+                    (selectedChange)="diaSeleccionado(selectedDay)"></mat-calendar>
     </mat-card>
   </div>
 
   <div class="turnos">
     <h3>Turnos</h3>
-    <div *ngIf="fechaSeleccionada">
-      <p>Dia: {{ fechaSeleccionada | date: 'd/M/yy' }}</p>
+    <div *ngIf="selectedDay && !loading1()">
+      <p>Dia: {{ selectedDay | date: 'd/M/yy' }}</p>
       <ul>
         <li *ngFor="let turno of turnos">
-          <button class="btnTurnos" (click)="turnoElegido(turno)" [ngClass]="{'noDisp': !turno.disponible}">
-            <span>Horario: {{ turno.horario }}hs</span>
-            <br>
-            <span *ngIf="turno.disponible">Disponible</span>
-            <span *ngIf="!turno.disponible">No disponible</span>
-          </button>
+          <mat-card>
+            <mat-card-header>
+              <mat-card-title>Horario: {{ turno.horario }}hs</mat-card-title>
+              <mat-card-subtitle *ngIf="turno.disponible">Disponible</mat-card-subtitle>
+              <mat-card-subtitle *ngIf="!turno.disponible">No disponible</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-actions align="end" *ngIf="turno.disponible">
+              <button mat-raised-button (click)="turnoElegido(turno)" color="primary">Reservar</button>
+            </mat-card-actions>
+          </mat-card>
         </li>
       </ul>
+    </div>
+    <div class="centrar-spinner" *ngIf="loading1()">
+      <mat-spinner></mat-spinner>
     </div>
   </div>
 
   <div class="resumen">
     <h3>Resumen</h3>
-    <div *ngIf="turnoSeleccionado !== null">
-      <div class="noDisponible" *ngIf="!turnoSeleccionado.disponible">
+    <div *ngIf="turnoSeleccionado !== null && !loading2()">
+      <!-- <div class="noDisponible" *ngIf="!turnoSeleccionado.disponible">
         <p>El turno seleccionado no se encuentra disponible.</p>
         <p>Por favor elija otro turno.</p>
-      </div>
+      </div> -->
       <div class="disponible" *ngIf="turnoSeleccionado.disponible">
-        <p>Usted esta por reservar el turno del: {{ fechaSeleccionada | date: 'd/M/yy' }}</p>
+        <p>Usted esta por reservar el turno del: {{ selectedDay | date: 'd/M/yy' }}</p>
         <p>A las: {{ turnoSeleccionado.horario }}hs</p>
-        <button class="btnContinuar">Continuar</button>
+        <a mat-raised-button color="primary" routerLink="/confirmation" (click)="reserveTurn()">Continuar</a>
       </div>
+    </div>
+    <div class="centrar-spinner" *ngIf="loading2()">
+      <mat-spinner></mat-spinner>
     </div>
   </div>
 </main>

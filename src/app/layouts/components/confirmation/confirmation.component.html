@@ -1,0 +1,79 @@
+<h1>Confirmación de turno</h1>
+
+<main class="principal-confirmation" *ngIf="!completedReservation()">
+
+  <div class="payment-method">
+    <h2>Método de pago</h2>
+    <ul>
+      <li *ngFor="let payment of paymentMethods">
+        <mat-card class="card">
+          <mat-card-header>
+            <mat-card-title>{{ payment | titlecase }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-actions>
+            <button mat-raised-button color="primary" (click)="paymentMethod.set(payment)">Continuar</button>
+          </mat-card-actions>
+        </mat-card>
+      </li>
+    </ul>
+  </div>
+
+  <div class="instructions">
+
+    <h2>Instrucciones</h2>
+
+    <div class="card">
+
+      <mat-card class="" *ngIf="paymentMethod() === 'efectivo'">
+        <mat-card-header>
+          <mat-card-title>Efectivo</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Debe presentarse antes del {{ turn.fecha | date: 'd/M/yy' }} a las {{ (turn.fecha.getHours() - 1) }}:45hs para realizar el pago de la reserva.</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="confirmedReservation()">CONFIRMAR</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- *ngIf="paymentMethod() === 'transferencia'" -->
+      <mat-card class="" *ngIf="paymentMethod() === 'transferencia'">
+        <mat-card-header>
+          <mat-card-title>Transferencia bancaria</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Debe realizar el pago de la reserva dentro de las próximas 24 horas.</p>
+          <p>Tiene hasta el {{ transferDate | date: 'd/M/yy' }} a las {{ transferDate | date: 'HH:mm'}} sino su reserva sera cancelada.</p>
+          <hr>
+          <span>Puede realizar la transferencia al CBU: 3743567111100065876630.</span>
+          <br>
+          <span>O al alias: manteca.de.mani</span>
+          <hr>
+          <span>Una ves realizada la transferencia enviar comprobante al WhatsApp <a mat-button href="https://wa.me/5493875763433" target="_blank">+5493875763433</a></span>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-raised-button color="primary" (click)="confirmedReservation()">CONFIRMAR</button>
+        </mat-card-actions>
+      </mat-card>
+
+      <mat-card class="mercadopago" *ngIf="paymentMethod() === 'mercadoPago'">
+        <mat-card-header>
+          <mat-card-title>MercadoPago</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <p>Esta opcion aun no se ecuentra disponible.</p>
+          <img src="assets/images/logo-mercadopago.jpg" alt="">
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</main>
+
+<main class="completed-confirmation" *ngIf="completedReservation()">
+  <mat-card>
+    <mat-card-title>Listo!</mat-card-title>
+    <mat-card-subtitle>Tu reserva está confirmada. Hemos enviado a tu email los detalles.</mat-card-subtitle>
+    <mat-card-content>Ud. será redirigido en:</mat-card-content>
+    <mat-card-footer>{{ timer }}</mat-card-footer>
+  </mat-card>
+</main>

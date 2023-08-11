@@ -1,4 +1,5 @@
 button {
+  width: 50%;
   cursor: pointer;
 }
 h3 {
@@ -26,9 +27,7 @@ h3 {
   text-align: center;
 
   .calendario {
-    grid-column: 1 / 2;
-    background-color: #ffffff;
-    .demo-inline-calendar-card {
+    .calendar-card {
       width: 100%;
     }
   }
@@ -42,28 +41,17 @@ h3 {
       padding: 0;
       list-style: none;
       li {
-        margin-bottom: 10px;
-        .btnTurnos {
-          width: 60%;
-          padding: 5px;
-          border-radius: 5px;
-          background-color: #63f4f6;
-          &:hover {
-            filter: brightness(80%);
+         margin-bottom: 10px;
+          mat-card-header {
+            justify-content: center;
           }
-        }
-        .noDisp {
-          background-color: #fe7171;
-        }
       }
     }
   }
-
-  .resumen {
-    .btnContinuar {
-      width: 50%;
-      padding: 8px;
-      border-radius: 5px;
-    }
+  .centrar-spinner {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
