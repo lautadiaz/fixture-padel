@@ -1,0 +1,118 @@
+<div class="container">
+
+  <mat-card *ngIf="!recoverPassword()">
+    <mat-card-header>
+      <mat-card-title class="title"><span class="capitalLetter">M</span><span>y</span><span class="capitalLetter">C</span><span>ancha </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M11.3429 7.05843L7.29824 0.356066C3.15073 1.57279 0.990563 4.70152 0.29931 7.39569L6.15855 11.2301H8.75074L11.3429 7.05843Z" fill="#00A241"/>
+        <path d="M12.5526 6.10243L8.76715 0.0953388C11.0137 -0.252297 13.6059 0.356066 15.7661 1.83352L12.5526 6.10243Z" fill="#00A241"/>
+        <path d="M5.12167 12.0122L0.0400922 8.96006C-0.219546 12.0189 0.817763 14.4353 2.11385 16.1735L5.12167 12.0122Z" fill="#00A241"/>
+        <path d="M9.442 14.4457L8.66434 12.6206H6.67699L2.97791 17.1295C4.27401 18.4331 5.65613 19.2235 7.38465 19.6499L9.442 14.4457Z" fill="#00A241"/>
+        <path d="M8.50793 19.9106L10.5653 15.4886L15.334 18.4331C13.5195 19.563 11.1538 20.2567 8.50793 19.9106Z" fill="#00A241"/>
+        <path d="M20 9.91605C17.811 9.13387 13.1229 7.57988 12.9847 7.57988L9.87404 12.0122L10.8245 14.0981L16.4573 17.651C19.3087 15.1306 20 12.4364 20 9.91605Z" fill="#00A241"/>
+        <path d="M14.1944 6.45006L16.8894 2.78952C18.3583 4.09315 19.568 6.17897 19.9136 8.52551L14.1944 6.45006Z" fill="#00A241"/>
+      </svg></mat-card-title >
+      <mat-card-subtitle class="subtitle">Iniciar Sesión</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Usuario o correo electrónico</mat-label>
+            <input matInput type="text" placeholder="bettyLaValvula@gmail.com" formControlName="username">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Contraseña</mat-label>
+            <input [type]="typePassword()" id="password" matInput placeholder="*******" formControlName="password">
+            <mat-icon *ngIf="typePassword() === 'password'" matSuffix (click)="typePassword.set('text')">visibility_off</mat-icon>
+            <mat-icon *ngIf="typePassword() === 'text'" matSuffix (click)="typePassword.set('password')">visibility_on</mat-icon>
+        </mat-form-field>
+
+        <div class="check">
+          <div>
+            <mat-checkbox color="primary"></mat-checkbox>
+            <span>Mantener mi sesion abierta</span>
+          </div>
+          <a mat-button (click)="recoverPassword.set(true)">Olvidaste tu usuario?</a>
+        </div>
+
+        <div *ngIf="error()" class="error" matError>
+          <span>**Usuario o contraseña incorrectos**</span>
+        </div>
+
+        <div class="confirmation">
+          <button *ngIf="!error() && !loading()" mat-raised-button color="primary" type="submit" (click)="loading.set(true)">Iniciar</button>
+          <button *ngIf="error() || loading()" mat-stroked-button color="primary" type="submit">Iniciar</button>
+          <button class="help" mat-button>Necesitas<br>Ayuda?</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <mat-card *ngIf="recoverPassword()">
+    <mat-card-header>
+      <mat-card-title class="title"><span class="capitalLetter">M</span><span>y</span><span class="capitalLetter">C</span><span>ancha </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M11.3429 7.05843L7.29824 0.356066C3.15073 1.57279 0.990563 4.70152 0.29931 7.39569L6.15855 11.2301H8.75074L11.3429 7.05843Z" fill="#00A241"/>
+        <path d="M12.5526 6.10243L8.76715 0.0953388C11.0137 -0.252297 13.6059 0.356066 15.7661 1.83352L12.5526 6.10243Z" fill="#00A241"/>
+        <path d="M5.12167 12.0122L0.0400922 8.96006C-0.219546 12.0189 0.817763 14.4353 2.11385 16.1735L5.12167 12.0122Z" fill="#00A241"/>
+        <path d="M9.442 14.4457L8.66434 12.6206H6.67699L2.97791 17.1295C4.27401 18.4331 5.65613 19.2235 7.38465 19.6499L9.442 14.4457Z" fill="#00A241"/>
+        <path d="M8.50793 19.9106L10.5653 15.4886L15.334 18.4331C13.5195 19.563 11.1538 20.2567 8.50793 19.9106Z" fill="#00A241"/>
+        <path d="M20 9.91605C17.811 9.13387 13.1229 7.57988 12.9847 7.57988L9.87404 12.0122L10.8245 14.0981L16.4573 17.651C19.3087 15.1306 20 12.4364 20 9.91605Z" fill="#00A241"/>
+        <path d="M14.1944 6.45006L16.8894 2.78952C18.3583 4.09315 19.568 6.17897 19.9136 8.52551L14.1944 6.45006Z" fill="#00A241"/>
+      </svg></mat-card-title >
+      <mat-card-subtitle class="subtitle recoverSubtitle">Recuperar Contraseña</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="recoverPasswordForm" (ngSubmit)="submit()">
+        <mat-form-field appearance="outline" color="primary">
+          <mat-label>Correo electrónico</mat-label>
+            <input matInput type="text" placeholder="bettyLaValvula@gmail.com" formControlName="email">
+        </mat-form-field>
+
+        <span class="recoverText">Ingresa tu correo electronico, una vez continues con la recuperacion de contraseña revisa tu bandeja de entrada y obtene link de recuperación!! </span>
+
+        <div class="confirmation">
+          <button mat-stroked-button color="primary" type="submit" (click)="recoverPassword.set(false)">Continuar</button>
+          <button class="help" mat-button>Necesitas<br>Ayuda?</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+
+  <div *ngIf="loading()" class="loadingBackground"></div>
+  <div *ngIf="loading()" class="loading">
+    <svg xmlns="http://www.w3.org/2000/svg" width="85" height="85" viewBox="0 0 85 85" fill="none">
+      <g filter="url(#filter0_d_72_67)">
+        <path d="M47.536 27.4691L32.3684 2.33525C16.8152 6.89797 8.71461 18.6307 6.12241 28.7339L28.0945 43.1127H37.8153L47.536 27.4691Z" fill="#B6E4C0"/>
+        <path d="M52.0724 23.8841L37.8768 1.35752C46.3015 0.0538855 56.0222 2.33525 64.1228 7.8757L52.0724 23.8841Z" fill="#B6E4C0"/>
+        <path d="M24.2063 46.0459L5.15035 34.6002C4.1767 46.071 8.06661 55.1325 12.9269 61.6506L24.2063 46.0459Z" fill="#B6E4C0"/>
+        <path d="M40.4075 55.1713L37.4913 48.3272H30.0387L16.1672 65.2356C21.0275 70.1243 26.2105 73.088 32.6924 74.687L40.4075 55.1713Z" fill="#B6E4C0"/>
+        <path d="M36.9047 75.6647L44.6198 59.0822L62.5027 70.1243C55.6982 74.3611 46.8267 76.9627 36.9047 75.6647Z" fill="#B6E4C0"/>
+        <path d="M80 38.1852C71.7914 35.252 54.2109 29.4245 53.6925 29.4245L42.0276 46.0459L45.5919 53.8677L66.715 67.1911C77.4078 57.7397 80 47.6366 80 38.1852Z" fill="#B6E4C0"/>
+        <path d="M58.2289 25.1877L68.3351 11.4607C73.8435 16.3493 78.3799 24.1711 79.676 32.9707L58.2289 25.1877Z" fill="#B6E4C0"/>
+        <path d="M47.536 27.4691L32.3684 2.33525C16.8152 6.89797 8.71461 18.6307 6.12241 28.7339L28.0945 43.1127H37.8153L47.536 27.4691Z" stroke="white" stroke-width="2"/>
+        <path d="M52.0724 23.8841L37.8768 1.35752C46.3015 0.0538855 56.0222 2.33525 64.1228 7.8757L52.0724 23.8841Z" stroke="white" stroke-width="2"/>
+        <path d="M24.2063 46.0459L5.15035 34.6002C4.1767 46.071 8.06661 55.1325 12.9269 61.6506L24.2063 46.0459Z" stroke="white" stroke-width="2"/>
+        <path d="M40.4075 55.1713L37.4913 48.3272H30.0387L16.1672 65.2356C21.0275 70.1243 26.2105 73.088 32.6924 74.687L40.4075 55.1713Z" stroke="white" stroke-width="2"/>
+        <path d="M36.9047 75.6647L44.6198 59.0822L62.5027 70.1243C55.6982 74.3611 46.8267 76.9627 36.9047 75.6647Z" stroke="white" stroke-width="2"/>
+        <path d="M80 38.1852C71.7914 35.252 54.2109 29.4245 53.6925 29.4245L42.0276 46.0459L45.5919 53.8677L66.715 67.1911C77.4078 57.7397 80 47.6366 80 38.1852Z" stroke="white" stroke-width="2"/>
+        <path d="M58.2289 25.1877L68.3351 11.4607C73.8435 16.3493 78.3799 24.1711 79.676 32.9707L58.2289 25.1877Z" stroke="white" stroke-width="2"/>
+      </g>
+      <defs>
+        <filter id="filter0_d_72_67" x="-6.10352e-05" y="0" width="85.0001" height="85" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+          <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+          <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+          <feOffset dy="4"/>
+          <feGaussianBlur stdDeviation="2"/>
+          <feComposite in2="hardAlpha" operator="out"/>
+          <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+          <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_72_67"/>
+          <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_72_67" result="shape"/>
+        </filter>
+      </defs>
+    </svg>
+      <span>Cargando...</span>
+  </div>
+</div>
