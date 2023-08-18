@@ -74,7 +74,10 @@
       width: 60%;
 
       mat-card {
-        height: 100%;
+        height: calc(100% - 35px);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
 
         .addHeader {
           display: flex;
@@ -97,7 +100,6 @@
           }
         }
         .date {
-          margin-top: 15px;
           padding: 0 5px;
           p {
             margin: 0;
@@ -114,7 +116,6 @@
           }
         }
         .time {
-          margin-top: 15px;
           padding: 0 5px;
           font-weight: 300;
           font-size: 12px;
@@ -138,7 +139,6 @@
           }
         }
         .courts {
-          margin-top: 15px;
           padding: 0 5px;
           p {
             margin: 0;
@@ -155,7 +155,6 @@
           }
         }
         .details {
-          margin-top: 15px;
           padding: 0 5px;
           span {
             margin: 0;
@@ -182,7 +181,7 @@
             }
           }
           .add-form3 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             margin-right: 10px;
             display: flex;
             justify-content: space-between;
@@ -193,7 +192,7 @@
             }
           }
           .add-form4 {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             input {
               width: 120px;
             }
