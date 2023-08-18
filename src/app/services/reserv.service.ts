@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Turn } from '../interfaces/reservs.interface';
+import { Turn } from 'src/app/shared/interfaces/reservs.interface';
 
 @Injectable({
   providedIn: 'root'

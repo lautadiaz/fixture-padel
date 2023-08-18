@@ -3,14 +3,30 @@
     <app-navbar></app-navbar>
   </mat-drawer>
 
-  <button class="btn-drawer" type="button" mat-button (click)="drawer.toggle()">
-    <mat-icon fontIcon="dehaze"></mat-icon>
-  </button>
+  <div class="header">
+    <button class="btn-drawer" type="button" mat-button (click)="drawer.toggle()">
+      <mat-icon fontIcon="dehaze"></mat-icon>
+    </button>
+    <mat-card-title class="title"><span>MyCancha </span>
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path d="M11.3429 7.05843L7.29824 0.356066C3.15073 1.57279 0.990563 4.70152 0.29931 7.39569L6.15855 11.2301H8.75074L11.3429 7.05843Z" fill="#505050"/>
+        <path d="M12.5526 6.10243L8.76715 0.0953388C11.0137 -0.252297 13.6059 0.356066 15.7661 1.83352L12.5526 6.10243Z" fill="#505050"/>
+        <path d="M5.12167 12.0122L0.0400922 8.96006C-0.219546 12.0189 0.817763 14.4353 2.11385 16.1735L5.12167 12.0122Z" fill="#505050"/>
+        <path d="M9.442 14.4457L8.66434 12.6206H6.67699L2.97791 17.1295C4.27401 18.4331 5.65613 19.2235 7.38465 19.6499L9.442 14.4457Z" fill="#505050"/>
+        <path d="M8.50793 19.9106L10.5653 15.4886L15.334 18.4331C13.5195 19.563 11.1538 20.2567 8.50793 19.9106Z" fill="#505050"/>
+        <path d="M20 9.91605C17.811 9.13387 13.1229 7.57988 12.9847 7.57988L9.87404 12.0122L10.8245 14.0981L16.4573 17.651C19.3087 15.1306 20 12.4364 20 9.91605Z" fill="#505050"/>
+        <path d="M14.1944 6.45006L16.8894 2.78952C18.3583 4.09315 19.568 6.17897 19.9136 8.52551L14.1944 6.45006Z" fill="#505050"/>
+      </svg>
+    </mat-card-title>
+    <div class="log">
+      <span>L</span>
+    </div>
+  </div>
 
   <div class="principal-content">
-      <app-header></app-header>
+      <!-- <app-header></app-header> -->
       <router-outlet></router-outlet>
-      <app-footer></app-footer>
+      <!-- <app-footer></app-footer> -->
   </div>
 
 </mat-drawer-container>

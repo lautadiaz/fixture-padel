@@ -1,0 +1,113 @@
+<div class="container-dashboard">
+
+  <div class="date-dashboard">
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span>{{date | date: 'EEEE d MMMM'}}</span>
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <table mat-table [dataSource]="dataSource">
+
+    <!-- Time Column -->
+    <ng-container *ngFor="let item of displayedColumns" matColumnDef="{{ item }}">
+      <th mat-header-cell *matHeaderCellDef> {{ item }} </th>
+      <td [class]="item" mat-cell *matCellDef="let element"> {{element[item] }} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <!-- <ng-container matColumnDef="canchita1">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="canchita2">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="canchita3">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container> -->
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <button class="add-button-oppen" mat-mini-fab (click)="addCourt.set(true)">
+    <mat-icon>add</mat-icon>
+  </button>
+
+  <!-- Seccion para agregar un turno -->
+  <div *ngIf="addCourt()" class="addBackground">
+      <div class="blank"></div>
+
+      <div class="addCourt">
+
+        <mat-card>
+          <mat-card-header class="addHeader">
+            <button class="add-button-closed" mat-mini-fab (click)="addCourt.set(false)" color="primary">
+              <mat-icon>keyboard_arrow_right</mat-icon>
+            </button>
+            <div>
+              <mat-card-title>Agendar una cancha</mat-card-title>
+            </div>
+          </mat-card-header>
+          <mat-divider></mat-divider>
+
+          <mat-card-content class="date">
+            <p>Fecha</p>
+            <mat-card>Calendario</mat-card>
+          </mat-card-content>
+
+          <mat-card-content class="time">
+            <div>
+              <p>Hora</p>
+              <input matInput type="number" min="0" max="24" value="14">
+              <span> : </span>
+              <input matInput type="number" min="0" max="59" value="30">
+            </div>
+            <div class="use-time">
+              <p>Tiempo de uso Hs</p>
+              <input matInput type="number" min="0" max="24" value="02">
+              <span> : </span>
+              <input matInput type="number" min="0" max="59" value="00">
+            </div>
+          </mat-card-content>
+
+          <mat-card-content class="courts">
+            <p>Canchas Disponibles</p>
+            <mat-card>Canchas</mat-card>
+          </mat-card-content>
+
+          <mat-card-content class="details">
+            <div class="add-form1">
+              <span>A nombre de: </span>
+              <input matInput type="text">
+            </div>
+            <div class="add-form2">
+              <span>Señia: </span>
+              <input matInput type="number">
+            </div>
+            <div class="add-form3">
+              <span>Nota extra: </span>
+              <textarea matInput></textarea>
+            </div>
+            <div class="add-form4">
+              <span>Total a pagar: </span>
+              <input matInput type="number" disabled>
+            </div>
+
+          </mat-card-content>
+          <mat-card-footer class="add-btn">
+          <button mat-raised-button color="warn" type="submit">Cancelar</button>
+          <button mat-raised-button color="primary" type="submit">Agendar</button>
+          </mat-card-footer>
+        </mat-card>
+      </div>
+  </div>
+</div>

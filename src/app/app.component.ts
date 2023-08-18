@@ -6,6 +6,7 @@ import { fromEvent } from 'rxjs';
 // Angular Material
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 
 // Componentes
 import { FooterComponent } from 'shared/components/footer/footer.component';
@@ -15,7 +16,7 @@ import { NavbarComponent } from 'shared/components/navbar/navbar.component';
 
 @Component({
   selector: 'app-root',
-  imports: [ CommonModule, RouterModule , NavbarComponent, HeaderComponent, FooterComponent, MatSidenavModule, MatIconModule],
+  imports: [ CommonModule, RouterModule , NavbarComponent, HeaderComponent, FooterComponent, MatSidenavModule, MatIconModule, MatCardModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true
@@ -25,7 +26,7 @@ export class AppComponent implements OnInit {
 
   title = 'fixture-padel';
 
-  opened: boolean = true;
+  opened: boolean = false;
   // Creo un observable para saber el ancho de la pantalla
   width = signal(window.innerWidth);
   widthChange$ = fromEvent(window, 'resize');

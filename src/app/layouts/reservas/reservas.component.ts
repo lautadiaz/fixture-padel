@@ -10,7 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Importaciones personalizadas
-import { Turn } from 'src/app/interfaces/reservs.interface';
+import { Turn } from 'src/app/shared/interfaces/reservs.interface';
 import { ReservService } from 'src/app/services/reserv.service';
 
 @Component({

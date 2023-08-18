@@ -9,7 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Importaciones personalizadas
 import { ReservService } from 'src/app/services/reserv.service';
-import { Turn } from 'src/app/interfaces/reservs.interface';
+import { Turn } from 'src/app/shared/interfaces/reservs.interface';
 
 @Component({
   selector: 'app-confirmation',
