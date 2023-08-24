@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 // Agular Material
 import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,4 +15,5 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class NavbarComponent {
 
+  authService = inject(AuthService);
 }

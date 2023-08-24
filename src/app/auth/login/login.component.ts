@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
@@ -9,6 +9,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
+import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +20,9 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
+
+  authService = inject(AuthService);
+  router = inject(Router);
 
   form: FormGroup = new FormGroup({
     username: new FormControl(''),
@@ -37,4 +42,9 @@ export class LoginComponent {
     }
   }
 
+  login() {
+    this.loading.set(false);
+    this.authService.login();
+    this.router.navigateByUrl('dashboard');
+  }
 }

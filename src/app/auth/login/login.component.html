@@ -41,7 +41,7 @@
         </div>
 
         <div class="confirmation">
-          <button *ngIf="!error() && !loading()" mat-raised-button color="primary" type="submit" (click)="loading.set(true)">Iniciar</button>
+          <button *ngIf="!error() && !loading()" mat-raised-button color="primary" type="submit" (click)="login()">Iniciar</button>
           <button *ngIf="error() || loading()" mat-stroked-button color="primary" type="submit">Iniciar</button>
           <button class="help" mat-button>Necesitas<br>Ayuda?</button>
         </div>

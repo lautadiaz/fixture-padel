@@ -42,20 +42,19 @@
         <a mat-stroked-button
            color="primary"
            class="nav-link"
-           routerLink="/login"
-           routerLinkActive="active">
-          <span>Login</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a mat-stroked-button
-           color="primary"
-           class="nav-link"
            routerLink="/dashboard"
            routerLinkActive="active">
           <span>Dashboard</span>
         </a>
+      </li>
+
+      <li class="nav-item">
+        <button mat-stroked-button
+           color="primary"
+           class="nav-link"
+          (click)="authService.logout()">
+          <span>Logout</span>
+        </button>
       </li>
     </ul>
   </nav>

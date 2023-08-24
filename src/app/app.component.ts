@@ -10,13 +10,12 @@ import { MatCardModule } from '@angular/material/card';
 
 // Componentes
 import { FooterComponent } from 'shared/components/footer/footer.component';
-import { HeaderComponent } from 'shared/components/header/header.component';
 import { NavbarComponent } from 'shared/components/navbar/navbar.component';
 
 
 @Component({
   selector: 'app-root',
-  imports: [ CommonModule, RouterModule , NavbarComponent, HeaderComponent, FooterComponent, MatSidenavModule, MatIconModule, MatCardModule],
+  imports: [ CommonModule, RouterModule , NavbarComponent, FooterComponent, MatSidenavModule, MatIconModule, MatCardModule],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
   standalone: true
