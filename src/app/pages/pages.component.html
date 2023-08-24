@@ -1,4 +1,4 @@
-<!-- <mat-drawer-container class="container-drawer" autosize>
+<mat-drawer-container class="container-drawer" autosize>
   <mat-drawer #drawer class="sidenav" mode="side" [(opened)]="opened">
     <app-navbar></app-navbar>
   </mat-drawer>
@@ -18,17 +18,18 @@
         <path d="M14.1944 6.45006L16.8894 2.78952C18.3583 4.09315 19.568 6.17897 19.9136 8.52551L14.1944 6.45006Z" fill="#505050"/>
       </svg>
     </mat-card-title>
-    <div class="log">
+    <div *ngIf="authenticated" class="log">
       <span>L</span>
+    </div>
+    <div *ngIf="!authenticated" class="login">
+      <a mat-stroked-button color="primary" routerLink="/login">Iniciar secion</a>
     </div>
   </div>
 
   <div class="principal-content">
 
       <router-outlet></router-outlet>
-      <app-footer></app-footer>
+      <!-- <app-footer></app-footer> -->
   </div>
 
-</mat-drawer-container> -->
-
-<router-outlet></router-outlet>
+</mat-drawer-container>

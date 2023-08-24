@@ -16,4 +16,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent {
 
   authService = inject(AuthService);
+  authenticated: boolean = this.authService.isAuthenticated();
+
 }

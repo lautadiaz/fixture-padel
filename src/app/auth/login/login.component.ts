@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 // Angular Material
 import { MatButtonModule } from '@angular/material/button';
@@ -24,10 +24,14 @@ export class LoginComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
+  // Formulario del login
   form: FormGroup = new FormGroup({
-    username: new FormControl(''),
-    password: new FormControl(''),
+    username: new FormControl('', [ Validators.required, Validators.email ]),
+    password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
+    remember: new FormControl('', [] ),
   });
+
+  // Formulario de recuperacion de la contraseña
   recoverPasswordForm: FormGroup = new FormGroup({
     email: new FormControl(''),
   });
@@ -39,12 +43,15 @@ export class LoginComponent {
 
   submit() {
     if (this.form.valid) {
+      this.login();
+    } else {
+      this.error.set(true);
     }
   }
 
   login() {
     this.loading.set(false);
-    this.authService.login();
-    this.router.navigateByUrl('dashboard');
+    this.authService.login(this.form);
+    this.router.navigateByUrl('pages/home');
   }
 }

@@ -38,7 +38,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li *ngIf="authenticated" class="nav-item">
         <a mat-stroked-button
            color="primary"
            class="nav-link"
@@ -48,7 +48,7 @@
         </a>
       </li>
 
-      <li class="nav-item">
+      <li *ngIf="authenticated" class="nav-item">
         <button mat-stroked-button
            color="primary"
            class="nav-link"

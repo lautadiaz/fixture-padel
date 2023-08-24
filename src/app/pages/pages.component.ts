@@ -11,19 +11,22 @@ import { MatCardModule } from '@angular/material/card';
 // Componentes
 import { FooterComponent } from 'shared/footer/footer.component';
 import { NavbarComponent } from 'shared/navbar/navbar.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-root',
-  imports: [ CommonModule, RouterModule , NavbarComponent, FooterComponent, MatSidenavModule, MatIconModule, MatCardModule],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true
+  selector: 'app-pages',
+  standalone: true,
+  imports: [ CommonModule, RouterModule , NavbarComponent, FooterComponent, MatSidenavModule, MatIconModule, MatCardModule, MatButtonModule],
+  templateUrl: './pages.component.html',
+  styleUrls: ['./pages.component.scss']
 })
-export class AppComponent implements OnInit {
 
+export class PagesComponent implements OnInit {
 
-  title = 'fixture-padel';
+  authService = inject(AuthService);
+
+  authenticated: boolean = this.authService.isAuthenticated();
 
   opened: boolean = false;
   // Creo un observable para saber el ancho de la pantalla
@@ -39,7 +42,6 @@ export class AppComponent implements OnInit {
         this.opened = true
       }
     });
-
   };
 
 

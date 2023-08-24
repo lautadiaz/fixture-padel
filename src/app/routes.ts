@@ -1,18 +1,27 @@
 import { Routes } from '@angular/router';
-import { CompeticionesComponent } from 'src/app/layouts/competiciones/competiciones.component';
-import { ConfirmationComponent } from 'components/confirmation/confirmation.component';
-import { HomeComponent } from 'src/app/layouts/home/home.component';
-import { ReservasComponent } from 'components/reservas/reservas.component';
+import { CompeticionesComponent } from 'src/app/pages/competiciones/competiciones.component';
+import { ConfirmationComponent } from 'src/app/pages/confirmation/confirmation.component';
+import { HomeComponent } from 'src/app/pages/home/home.component';
+import { ReservasComponent } from 'src/app/pages/reservas/reservas.component';
 import { LoginComponent } from './auth/login/login.component';
-import { DashboardComponent } from 'components/dashboard/dashboard.component';
+import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
+import { PagesComponent } from './pages/pages.component';
+
+
+const childenRoutes = [
+
+  // Ver porque el / vacio no lleva al home sin el primer path
+  { path: ''             , component: HomeComponent },
+  { path: 'home'         , component: HomeComponent },
+  { path: 'reservas'     , component: ReservasComponent     },
+  { path: 'competiciones', component: CompeticionesComponent},
+  { path: 'confirmation' , component: ConfirmationComponent },
+  { path: 'dashboard'    , component: DashboardComponent, canActivate: [ authGuard ] },
+]
 
 export const routes: Routes = [
-  { path: 'home'         , component: HomeComponent         , canActivate: [ authGuard ] },
-  { path: 'reservas'     , component: ReservasComponent     , canActivate: [ authGuard ] },
-  { path: 'competiciones', component: CompeticionesComponent, canActivate: [ authGuard ] },
-  { path: 'confirmation' , component: ConfirmationComponent , canActivate: [ authGuard ] },
-  { path: 'dashboard'    , component: DashboardComponent    , canActivate: [ authGuard ] },
-  { path: 'login'        , component: LoginComponent },
-  { path: '**'           , redirectTo: 'home' }
+  { path: '', component: PagesComponent, children: childenRoutes },
+  { path: 'login', component: LoginComponent },
+  { path: '**', redirectTo: 'home' }
 ];

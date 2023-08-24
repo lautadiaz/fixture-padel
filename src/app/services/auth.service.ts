@@ -1,4 +1,5 @@
 import { Injectable, NgZone, inject } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -9,7 +10,11 @@ export class AuthService {
   router = inject( Router );
   ngZone = inject( NgZone );
 
-  login() {
+  login( data: FormGroup ) {
+
+    const { password, remember, username } = data.value;
+    console.log(password, remember, username );
+
     localStorage.setItem('token', 'logeado');
   };
 
