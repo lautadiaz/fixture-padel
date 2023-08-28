@@ -12,27 +12,32 @@
 
   <table mat-table [dataSource]="dataSource">
 
-    <!-- Time Column -->
-    <ng-container *ngFor="let item of displayedColumns" matColumnDef="{{ item }}">
+    <!-- Tabla dinamica -->
+    <!-- <ng-container *ngFor="let item of displayedColumns" matColumnDef="{{ item }}">
       <th mat-header-cell *matHeaderCellDef> {{ item }} </th>
-      <td [class]="item" mat-cell *matCellDef="let element"> {{element[item] }} </td>
-    </ng-container>
+      <td [class]="item" mat-cell *matCellDef="let element" (click)="getRecord(element[item], element)"> {{ element[item] }} </td>
+    </ng-container> -->
 
+    <!-- Time Column -->
+    <ng-container matColumnDef="hour">
+      <th mat-header-cell *matHeaderCellDef> Horario </th>
+      <td mat-cell *matCellDef="let element"> {{element.hour}} </td>
+    </ng-container>
     <!-- Name Column -->
-    <!-- <ng-container matColumnDef="canchita1">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    <ng-container matColumnDef="canchita1">
+      <th mat-header-cell *matHeaderCellDef> Canchita1 </th>
+      <td mat-cell *matCellDef="let element" (click)="getRecord(element.canchita1)"> {{ element.canchita1.reservedBy }} </td>
     </ng-container>
 
     <ng-container matColumnDef="canchita2">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      <th mat-header-cell *matHeaderCellDef> Canchita2 </th>
+      <td mat-cell *matCellDef="let element" (click)="getRecord(element.canchita2)"> {{element.canchita2.reservedBy }} </td>
     </ng-container>
 
     <ng-container matColumnDef="canchita3">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container> -->
+      <th mat-header-cell *matHeaderCellDef> Canchita3 </th>
+      <td mat-cell *matCellDef="let element" (click)="getRecord(element.canchita3)"> {{element.canchita3.reservedBy }} </td>
+    </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
@@ -104,10 +109,26 @@
 
           </mat-card-content>
           <mat-card-footer class="add-btn">
-          <button mat-raised-button color="warn" type="submit">Cancelar</button>
+          <button mat-raised-button color="warn" (click)="addCourt.set(false)">Cancelar</button>
           <button mat-raised-button color="primary" type="submit">Agendar</button>
           </mat-card-footer>
         </mat-card>
       </div>
+  </div>
+
+
+  <!-- Borrar reservacion  -->
+  <div *ngIf="deleteReserv()" class="addBackground">
+    <div class="delete">
+      <mat-card>
+        <mat-card-header>
+          <h2>Seguro desea eliminar la reserva?</h2>
+        </mat-card-header>
+        <mat-card-actions class="delete-actions">
+          <button mat-raised-button (click)="deleteReserv.set(false)">Cancelar</button>
+          <button mat-raised-button color="warn" (click)="deleteReservation()" >Eliminar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
   </div>
 </div>
