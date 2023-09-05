@@ -1,7 +1,7 @@
 export interface Turn {
-  available: boolean;
-  time     : number;
-  date     : Date;
+  available: boolean,
+  time     : number,
+  date     : Date
 }
 
 export interface Reservation {
@@ -10,5 +10,6 @@ export interface Reservation {
   reservedBy: string,
   date: Date,
   deposit: number,
-  note: string
+  note: string,
+  court: string,
 }

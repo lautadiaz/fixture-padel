@@ -1,19 +1,35 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable, NgZone, inject } from '@angular/core';
-import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+
+import { environment } from 'env';
+import { tap } from 'rxjs';
+import { LoginForm } from 'shared/interfaces/login-form.interface';
+
+
+const base_url = environment.base_url;
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
 
+  http   = inject( HttpClient );
   router = inject( Router );
   ngZone = inject( NgZone );
 
-  login( data: FormGroup ) {
+  login( data: LoginForm ) {
 
-    const { password, remember, username } = data.value;
-    console.log(password, remember, username );
+    console.log(data);
+    // return this.http.post( `${base_url}/users/login`, data )
+    //             .pipe(
+    //               tap( (resp: any)  => {
+    //                 console.log(resp);
+    //               })
+    //             );
+    const { password, remember, email } = data;
+    console.log(password, remember, email );
 
     localStorage.setItem('token', 'logeado');
   };

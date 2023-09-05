@@ -1,0 +1,25 @@
+<div *ngIf="!deleteReserv()">
+  <h1 mat-dialog-title>{{ item.reservedBy }}</h1>
+  <div mat-dialog-content>
+    <p>Fecha: {{ item.date | date: 'EEEE d MMMM' }}</p>
+    <p>Horario: {{ item.hour }}hs</p>
+    <p>Tiempo de uso: {{ item.usageTime }} horas</p>
+    <p>Señia: {{ item.deposit }}</p>
+    <p *ngIf="item.note">Notas: {{ item.note }}</p>
+  </div>
+  <div class="actions" mat-dialog-actions>
+    <button mat-button mat-dialog-close>Cerrar</button>
+    <div>
+      <button mat-raised-button color="primary" [mat-dialog-close]="'edit'">Editar</button>
+      <button mat-raised-button color="warn" (click)="deleteReserv.set(true)">Borrar</button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="deleteReserv()">
+  <h1 mat-dialog-title>Seguro desea eliminar la reserva?</h1>
+  <div mat-dialog-content class="actions">
+    <button mat-raised-button (click)="deleteReserv.set(false)">Cancelar</button>
+    <button mat-raised-button color="warn" [mat-dialog-close]="'delete'">Eliminar</button>
+  </div>
+</div>

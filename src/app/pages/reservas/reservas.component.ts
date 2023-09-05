@@ -11,7 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Importaciones personalizadas
 import { Turn } from 'src/app/shared/interfaces/reservs.interface';
-import { ReservService } from 'src/app/services/reserv.service';
+import { ReservationService } from 'src/app/services/reservation.service';
 
 @Component({
   selector: 'app-reservas',
@@ -22,7 +22,7 @@ import { ReservService } from 'src/app/services/reserv.service';
 })
 export class ReservasComponent {
 
-  reservService = inject(ReservService);
+  reservationService = inject(ReservationService);
 
   // Para los filtros
   sports: string[] = ["padel", "futbol5", "tenis"]
@@ -61,6 +61,6 @@ export class ReservasComponent {
   }
   reserveTurn() {
     if( this.selecctedTurn )
-    this.reservService.setSelectedDate(this.selecctedTurn)
+    this.reservationService.setSelectedDate(this.selecctedTurn)
   }
 }

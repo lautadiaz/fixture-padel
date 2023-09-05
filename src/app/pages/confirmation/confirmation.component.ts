@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 // Importaciones personalizadas
-import { ReservService } from 'src/app/services/reserv.service';
+import { ReservationService } from 'src/app/services/reservation.service';
 import { Turn } from 'src/app/shared/interfaces/reservs.interface';
 
 @Component({
@@ -20,7 +20,7 @@ import { Turn } from 'src/app/shared/interfaces/reservs.interface';
 })
 export class ConfirmationComponent implements OnInit {
 
-  reservService = inject(ReservService);
+  reservationService = inject(ReservationService);
   router = inject(Router);
 
   paymentMethods: string[] = ['cash', 'transfer', 'mercadoPago'];
@@ -41,7 +41,7 @@ export class ConfirmationComponent implements OnInit {
 
   // Recibo el turno de la reserva a traves del servicio
   turnToReserve() {
-    this.turn = this.reservService.selectedDate;
+    this.turn = this.reservationService.selectedDate;
   };
 
   // Cuenta atras

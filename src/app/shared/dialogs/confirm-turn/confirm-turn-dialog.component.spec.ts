@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DialogComponent } from './dialog.component';
+import { ConfirmTurnDialogComponent } from './confirm-turn-dialog.component';
 
 describe('DialogComponent', () => {
-  let component: DialogComponent;
-  let fixture: ComponentFixture<DialogComponent>;
+  let component: ConfirmTurnDialogComponent;
+  let fixture: ComponentFixture<ConfirmTurnDialogComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [DialogComponent]
+      imports: [ConfirmTurnDialogComponent]
     });
-    fixture = TestBed.createComponent(DialogComponent);
+    fixture = TestBed.createComponent(ConfirmTurnDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

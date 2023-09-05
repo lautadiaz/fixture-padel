@@ -1,19 +1,20 @@
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+// Angular Material
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 import { Reservation } from 'shared/interfaces/reservs.interface';
 
 @Component({
-  selector: 'app-dialog',
+  selector: 'confirm-turn-dialog',
   standalone: true,
   imports: [CommonModule, MatDialogModule, MatButtonModule],
-  templateUrl: './dialog.component.html',
-  styleUrls: ['./dialog.component.scss']
+  templateUrl: './confirm-turn-dialog.component.html',
+  styleUrls: ['./confirm-turn-dialog.component.scss']
 })
-export class DialogComponent {
+export class ConfirmTurnDialogComponent {
 
   constructor( @Inject(MAT_DIALOG_DATA) public item: Reservation ) {}
 

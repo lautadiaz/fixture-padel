@@ -26,7 +26,7 @@ export class LoginComponent {
 
   // Formulario del login
   form: FormGroup = new FormGroup({
-    username: new FormControl('', [ Validators.required, Validators.email ]),
+    email   : new FormControl('', [ Validators.required, Validators.email ]),
     password: new FormControl('', [ Validators.required, Validators.minLength(6) ]),
     remember: new FormControl('', [] ),
   });
@@ -51,7 +51,16 @@ export class LoginComponent {
 
   login() {
     this.loading.set(false);
-    this.authService.login(this.form);
+    console.log(this.form.value);
+    // this.authService.login(this.form.value).subscribe({
+    //   next: resp => {
+    //     console.log(resp)
+    //   },
+    //   error: err => {
+    //     console.log(err)
+    //   }
+    // });
+    this.authService.login(this.form.value);
     this.router.navigateByUrl('pages/home');
   }
 }

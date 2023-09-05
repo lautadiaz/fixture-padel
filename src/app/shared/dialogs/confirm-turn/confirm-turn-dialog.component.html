@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>Confirmar reservación</h1>
+<div mat-dialog-content>
+  <p>A nombre de: {{ item.reservedBy }}</p>
+  <p>Fecha: {{ item.date | date: 'EEEE d MMMM' }}</p>
+  <p>Horario: {{ item.hour }}hs</p>
+  <p>Tiempo de uso: {{ item.usageTime }} horas</p>
+  <p>Señia: {{ item.deposit }}</p>
+  <p *ngIf="item.note">Notas: {{ item.note }}</p>
+</div>
+<div class="actions" mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-raised-button color="primary" mat-dialog-close [mat-dialog-close]="'confirm'">Confirmar</button>
+</div>

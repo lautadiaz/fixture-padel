@@ -1,6 +1,6 @@
 import { Component, OnChanges, OnInit, SimpleChanges, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { NavigationEnd, Router, RouterModule } from '@angular/router';
 import { fromEvent } from 'rxjs';
 
 // Angular Material
@@ -25,6 +25,7 @@ import { AuthService } from '../services/auth.service';
 export class PagesComponent implements OnInit {
 
   authService = inject(AuthService);
+  router = inject(Router);
 
   authenticated: boolean = this.authService.isAuthenticated();
 
@@ -37,11 +38,17 @@ export class PagesComponent implements OnInit {
     this.widthChange$.subscribe( () => {
       this.width.set(window.innerWidth);
       if ( this.width() < 425 ) {
-        this.opened = false
+        this.opened = false;
       } else {
-        this.opened = true
+        this.opened = true;
       }
     });
+
+    this.router.events.subscribe((event) => {
+      if ( event instanceof NavigationEnd ) {
+        this.opened = false;
+      }
+    })
   };
 
 

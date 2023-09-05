@@ -7,6 +7,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from 'src/app/pages/dashboard/dashboard.component';
 import { authGuard } from './guards/auth.guard';
 import { PagesComponent } from './pages/pages.component';
+import { DashboardGridComponent } from 'components/dashboard-grid/dashboard-grid.component';
 
 
 const childenRoutes = [
@@ -18,6 +19,7 @@ const childenRoutes = [
   { path: 'competiciones', component: CompeticionesComponent},
   { path: 'confirmation' , component: ConfirmationComponent },
   { path: 'dashboard'    , component: DashboardComponent, canActivate: [ authGuard ] },
+  { path: 'dashboardGrid'    , component: DashboardGridComponent},
 ]
 
 export const routes: Routes = [

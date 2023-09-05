@@ -1,0 +1,13 @@
+<mat-grid-list cols="4" rowHeight="2:1">
+  <!-- Cabecera de la tabla -->
+  <mat-grid-tile *ngFor="let column of displayedColumns">
+    <div class="mat-header-cell">{{ column }}</div>
+  </mat-grid-tile>
+
+  <!-- Datos de la tabla -->
+  <mat-grid-tile *ngFor="let row of dataSource">
+    <div *ngFor="let column of displayedColumns" class="mat-cell">
+      {{ row[column] }}
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
