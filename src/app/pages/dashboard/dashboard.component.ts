@@ -104,7 +104,7 @@ export class DashboardComponent implements OnInit{
   courtTypes: string[] = ['Padel', 'Futbol 11', 'Tenis', 'Basket', 'Futbol 5'];
   courts: any[] = [];
   price: number = 3500;
-  courtToEdit: string = '';
+  courtToEdit!: Reservation;
 
   // Formulario de cancha nueva
   newCourt: FormGroup = new FormGroup({
@@ -159,26 +159,31 @@ export class DashboardComponent implements OnInit{
   editReserv = signal(false);
 
   addReservation(reservation: Reservation, editTurn: boolean) {
+
     for( const hour of this.hours ) {
-      if ( hour.value === reservation.hour && hour[reservation.court] !== '') {
-        if( !editTurn ) {
-          console.log('Turno ocupado');
-          break;
-        }
-        console.log('editando en misma cancha');
-        hour[reservation.court] = reservation;
-        this.editReserv.set(false);
-        break;
+      if( editTurn && hour.value === this.courtToEdit.hour ) {
+        // Borro el turno por editar
+        hour[this.courtToEdit.court] = '';
+        console.log('borrando');
       }
-      if ( hour.value === reservation.hour ) {
-        if ( editTurn ) {
-          hour[this.courtToEdit] = '';
-          console.log('Editando cancha distinta');
+      if ( hour.value === reservation.hour) {
+        if ( hour[reservation.court] !== '' ) {
+          if( !editTurn ) {
+            // Si es un turno nuevo en uno ya ocupado no hago nada
+            console.log('Turno ocupado');
+            break;
+          } else {
+            // Si es un turno editado en uno ya ocupado vuelvo a crear el turno en donde fue borrado
+            this.hours.find( hour => hour.value === this.courtToEdit.hour)[this.courtToEdit.court] = this.courtToEdit;
+            console.log('Turno ocupado');
+            this.editReserv.set(false);
+            break;
+          }
         }
+        // Creo el nuevo turno o el editado en el nuevo lugar
         hour[reservation.court] = reservation;
         console.log('creando');
         this.editReserv.set(false);
-        break;
       }
     }
   }
@@ -205,7 +210,7 @@ export class DashboardComponent implements OnInit{
     this.newCourt.setValue( reservation );
     this.addCourt.set(true);
     this.editReserv.set(true);
-    this.courtToEdit = reservation.court;
+    this.courtToEdit = reservation;
   }
 
   deleteReservation(reservation: Reservation) {
