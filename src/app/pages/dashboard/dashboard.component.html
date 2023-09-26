@@ -101,7 +101,7 @@
                 </mat-card-content>
                 <mat-card-content class="court">
                   <mat-radio-group labelPosition="before" formControlName="court">
-                    <mat-radio-button class="half-size-radio" *ngFor="let court of courts" color="primary" [value]="court.courtName">{{ court.courtName | titlecase }}</mat-radio-button>
+                    <mat-radio-button id="radio-button" class="half-size-radio" *ngFor="let court of courts" color="primary" [value]="court.courtName">{{ court.courtName | titlecase }}</mat-radio-button>
                   </mat-radio-group>
                 </mat-card-content>
               </mat-card>

@@ -1,0 +1,244 @@
+.container-dashboard {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .date-dashboard {
+    position: fixed;
+    width: 100%;
+    color: #FFFFFF;
+    background-color: #D1D1D1;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    button {
+      padding: 0px;
+      height: 24px;
+    }
+  }
+
+  .container-grid {
+    margin-top: 23px;
+    display: flex;
+
+    .grid-list{
+      width: 110px;
+
+      .grid-title {
+        border: 1px solid #B6E4C0;
+        background: #B6E4C0;
+        color: #FFFFFF;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .grid-columns {
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        padding: 0;
+        text-align: center;
+      }
+    }
+  }
+
+  .add-button-oppen {
+    position: fixed;
+    width: 45px;
+    height: 45px;
+    bottom: 15px;
+	  right: 10px;
+    z-index: 100;
+    color: #000000;
+    background-color: #B6E4C0;
+    mat-icon {
+      transform: scale(1.5);
+    }
+  }
+
+
+  // Seccion para agregar un turno
+  .addBackground {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 900;
+    display: flex;
+    overflow: hidden;
+
+    .blank {
+      width: 40%;
+    }
+    .addCourt {
+      background-color: #FFFFFF;
+      width: 60%;
+
+      .new-court {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .addHeader {
+          display: flex;
+          .add-button-closed {
+            margin-left: -35px;
+            margin-top: -10px;
+            color: #000;
+            background-color: #B6E4C0;
+
+            mat-icon {
+              transform: scale(1.5);
+              color: #000;
+            }
+          }
+          mat-card-title {
+            margin-left: 20px;
+            margin-top: -5px;
+            font-size: 16px;
+            font-weight: 400;
+          }
+        }
+        .date {
+          padding: 0 5px;
+          p {
+            margin: 0;
+            font-weight: 300;
+            font-size: 12px;
+          }
+          .calendar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+        }
+        .time {
+          padding: 0 5px;
+          font-weight: 300;
+          font-size: 12px;
+          display: flex;
+          justify-content: space-between;
+
+          .ng-touched.ng-invalid{
+            border: 1px solid red;
+          }
+          input {
+            width: 30px;
+            height: 40px;
+            font-size: 20px;
+            border: 1px solid #E9E9E9;
+            background-color: #E9E9E9;
+            border-radius: 4px;
+            text-align: center;
+          }
+          span {
+            font-size: 24px;
+          }
+          .use-time {
+            text-align: end;
+          }
+        }
+        .courts {
+          padding: 0 5px;
+          p {
+            margin: 0;
+            font-weight: 300;
+            font-size: 12px;
+          }
+          mat-card {
+            height: 100px;
+            font-weight: 300;
+            padding: 2px 4px;
+            font-size: 12px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            .court-type {
+              padding: 0;
+              border-right: 1px solid #D1D1D1B2;
+              overflow: auto;
+            }
+            .court {
+              padding: 0 4px;
+              overflow: auto;
+            }
+            div {
+              height: 30px;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+            }
+          }
+        }
+        .details {
+          padding: 0 5px;
+          span {
+            margin: 0;
+            font-weight: 300;
+            font-size: 12px;
+          }
+          .ng-touched.ng-invalid{
+            border:1px solid red;
+          }
+          input, textarea {
+            font-size: 12px;
+            height: 20px;
+            border: 1px solid #F1F1F1;
+            border-radius: 4px;
+          }
+          .add-form1 {
+            margin-bottom: 10px;
+            input {
+              width: 100px;
+            }
+          }
+          .add-form2 {
+            margin-bottom: 10px;
+            input {
+              width: 50px;
+            }
+          }
+          .add-form3 {
+            margin-bottom: 15px;
+            textarea {
+              width: 100px;
+              height: 70px;
+              resize: none;
+            }
+          }
+          .add-form4 {
+            margin-bottom: 15px;
+            input {
+              width: 100px;
+            }
+          }
+          .display {
+            margin-right: 10px;
+            display: flex;
+            justify-content: space-between;
+          }
+        }
+        .add-btn {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 10px;
+          button {
+            height: 30px;
+            border-radius: 15px;
+          }
+        }
+      }
+    }
+
+    .delete {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .delete-actions {
+        display: flex;
+        justify-content: space-around;
+      }
+    }
+  }
+}

@@ -1,13 +1,125 @@
-<mat-grid-list cols="4" rowHeight="2:1">
-  <!-- Cabecera de la tabla -->
-  <mat-grid-tile *ngFor="let column of displayedColumns">
-    <div class="mat-header-cell">{{ column }}</div>
-  </mat-grid-tile>
+<div class="container-dashboard">
 
-  <!-- Datos de la tabla -->
-  <mat-grid-tile *ngFor="let row of dataSource">
-    <div *ngFor="let column of displayedColumns" class="mat-cell">
-      {{ row[column] }}
+  <div class="date-dashboard">
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_left</mat-icon>
+    </button>
+    <span>{{date | date: 'EEEE d MMMM'}}</span>
+    <button mat-icon-button>
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="container-grid" [ngStyle]="{'width.px': pagewidth}">
+
+    <div class="grid-list" *ngFor="let items of gridArray">
+      <mat-grid-list cols="1" rowHeight="4:1">
+
+        <mat-grid-tile class="grid-title" [rowspan]="1">
+          <div>{{ items[0].key | titlecase }}</div>
+        </mat-grid-tile>
+        <!-- [rowspan]="item.value.usageTime ? item.value.usageTime : 1" -->
+        <mat-grid-tile class="grid-columns"
+                       *ngFor="let item of items"
+                       [rowspan]="item.value.usageTime ? (item.value.usageTime * 2) : 2"
+                       [style.background]="item.value.usageTime ?'#F1F367B2' : ''"
+                       [style.border-radius]="item.value.usageTime ? '10px' : ''">
+          <div *ngIf="item.key === 'hour'">{{ item.value }}</div>
+          <div *ngIf="item.key !== 'hour'" (click)="getRecord(item.value)" >{{ item.value.reservedBy }}</div>
+        </mat-grid-tile>
+
+      </mat-grid-list>
     </div>
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+
+  <button class="add-button-oppen" mat-mini-fab (click)="addCourt.set(true)">
+    <mat-icon>add</mat-icon>
+  </button>
+
+   <!-- Seccion para agregar un turno -->
+   <div *ngIf="addCourt()" class="addBackground">
+    <div class="blank"></div>
+
+    <div class="addCourt">
+
+      <form [formGroup]="newCourt" class="new-court" (ngSubmit)="submit()">
+        <mat-card-header class="addHeader">
+          <button class="add-button-closed" mat-mini-fab (click)="addCourt.set(false)" color="primary">
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+          <div>
+            <mat-card-title>Agendar una cancha</mat-card-title>
+          </div>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+
+
+          <mat-card-content class="date">
+            <p>Fecha</p>
+              <mat-form-field subscriptSizing="dynamic" class="calendar">
+                <mat-label>Elija una fecha</mat-label>
+                <input matInput [matDatepickerFilter]="myFilter" [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+          </mat-card-content>
+
+          <mat-card-content class="time">
+            <div>
+              <p>Hora</p>
+                <input matInput type="number" formControlName="hour">
+              <span> : </span>
+              <input matInput type="number" disabled value="00">
+            </div>
+            <div class="use-time">
+              <p>Tiempo de uso Hs</p>
+              <input matInput type="number" formControlName="usageTime">
+              <span> : </span>
+              <input matInput type="number" disabled value="00">
+            </div>
+          </mat-card-content>
+
+          <mat-card-content class="courts">
+            <p>Canchas Disponibles</p>
+            <mat-card class="court-container">
+              <mat-card-content class="court-type">
+                <div *ngFor="let courtType of courtTypes">
+                  <span>{{ courtType }}</span>
+                  <mat-radio-button color="primary"></mat-radio-button>
+                </div>
+              </mat-card-content>
+              <mat-card-content class="court">
+                <mat-radio-group labelPosition="before" formControlName="court">
+                  <mat-radio-button id="radio-button" class="half-size-radio" *ngFor="let court of courts" color="primary" [value]="court.courtName">{{ court.courtName | titlecase }}</mat-radio-button>
+                </mat-radio-group>
+              </mat-card-content>
+            </mat-card>
+          </mat-card-content>
+
+          <mat-card-content class="details">
+            <div class="add-form1 display">
+              <span>A nombre de: </span>
+              <input matInput type="text" formControlName="reservedBy">
+            </div>
+            <div class="add-form2">
+              <span>Señia: </span>
+              <input matInput type="number" formControlName="deposit">
+            </div>
+            <div class="add-form3 display">
+              <span>Nota extra: </span>
+              <textarea matInput formControlName="note"></textarea>
+            </div>
+            <div class="add-form4 display">
+              <span>Total a pagar: </span>
+              <input matInput type="number" disabled [value]="totalToPay$ | async">
+            </div>
+          </mat-card-content>
+
+          <mat-card-footer class="add-btn">
+            <button mat-raised-button color="warn" (click)="addCourt.set(false)">Cancelar</button>
+            <button mat-raised-button color="primary" type="submit">Agendar</button>
+          </mat-card-footer>
+      </form>
+    </div>
+  </div>
+</div>

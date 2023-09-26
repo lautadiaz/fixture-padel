@@ -18,8 +18,8 @@ const childenRoutes = [
   { path: 'reservas'     , component: ReservasComponent     },
   { path: 'competiciones', component: CompeticionesComponent},
   { path: 'confirmation' , component: ConfirmationComponent },
-  { path: 'dashboard'    , component: DashboardComponent, canActivate: [ authGuard ] },
-  { path: 'dashboardGrid'    , component: DashboardGridComponent},
+  { path: 'dashboard'    , component: DashboardGridComponent, canActivate: [ authGuard ] },
+  // { path: 'dashboardGrid'    , component: DashboardGridComponent},
 ]
 
 export const routes: Routes = [
